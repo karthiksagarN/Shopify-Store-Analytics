@@ -28,9 +28,14 @@ app.use('/api/auth', authRoutes);
 app.use('/api/tenants', tenantRoutes);
 app.use('/api/analytics', analyticsRoutes);
 
-// Health check
+// Health check 
 app.get('/health', (req, res) => {
   res.json({ status: 'ok', timestamp: new Date().toISOString() });
+});
+
+// Health check for monitoring tool
+app.head('/health_check', (req, res) => {
+  res.json({ status: 'ok'});
 });
 
 // Error handling middleware
