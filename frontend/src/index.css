@@ -1,0 +1,201 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 20% 98%;
+    --foreground: 222 47% 11%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+
+    --primary: 239 84% 67%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222 47% 11%;
+
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 16% 47%;
+
+    --accent: 167 98% 39%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 239 84% 67%;
+
+    --radius: 0.75rem;
+
+    --chart-1: 239 84% 67%;
+    --chart-2: 167 98% 39%;
+    --chart-3: 43 96% 56%;
+    --chart-4: 291 64% 42%;
+    --chart-5: 0 84% 60%;
+
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 222 47% 11%;
+    --sidebar-primary: 239 84% 67%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 40% 96%;
+    --sidebar-accent-foreground: 222 47% 11%;
+    --sidebar-border: 214 32% 91%;
+    --sidebar-ring: 239 84% 67%;
+
+    --success: 142 76% 36%;
+    --success-foreground: 0 0% 100%;
+    --warning: 43 96% 56%;
+    --warning-foreground: 222 47% 11%;
+
+    --gradient-primary: linear-gradient(135deg, hsl(239, 84%, 67%) 0%, hsl(291, 64%, 42%) 100%);
+    --gradient-success: linear-gradient(135deg, hsl(167, 98%, 39%) 0%, hsl(142, 76%, 36%) 100%);
+    --gradient-card: linear-gradient(180deg, hsl(0, 0%, 100%) 0%, hsl(210, 40%, 98%) 100%);
+
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-glow: 0 0 30px -5px hsl(239, 84%, 67%, 0.3);
+  }
+
+  .dark {
+    /* Shopify-inspired Dark Green/Black Theme */
+    --background: 150 10% 5%;
+    /* Very deep green-black */
+    --foreground: 0 0% 100%;
+
+    --card: 150 10% 8%;
+    --card-foreground: 0 0% 100%;
+
+    --popover: 150 10% 8%;
+    --popover-foreground: 0 0% 100%;
+
+    --primary: 95 38% 62%;
+    /* Shopify Green-ish */
+    --primary-foreground: 150 10% 5%;
+
+    --secondary: 150 10% 12%;
+    --secondary-foreground: 0 0% 100%;
+
+    --muted: 150 10% 12%;
+    --muted-foreground: 150 5% 60%;
+
+    --accent: 95 38% 62%;
+    --accent-foreground: 150 10% 5%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 150 10% 15%;
+    --input: 150 10% 15%;
+    --ring: 95 38% 62%;
+
+    --sidebar-background: 150 10% 6%;
+    --sidebar-foreground: 0 0% 100%;
+    --sidebar-primary: 95 38% 62%;
+    --sidebar-primary-foreground: 150 10% 5%;
+    --sidebar-accent: 150 10% 12%;
+    --sidebar-accent-foreground: 0 0% 100%;
+    --sidebar-border: 150 10% 15%;
+    --sidebar-ring: 95 38% 62%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+
+  code,
+  pre {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+@layer utilities {
+  .animate-fade-in {
+    animation: fadeIn 0.3s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.4s ease-out forwards;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.3s ease-out forwards;
+  }
+
+  .glass {
+    @apply bg-card/80 backdrop-blur-lg border border-border/50;
+  }
+
+  .gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse-glow {
+
+  0%,
+  100% {
+    box-shadow: 0 0 20px hsl(239, 84%, 67%, 0.2);
+  }
+
+  50% {
+    box-shadow: 0 0 30px hsl(239, 84%, 67%, 0.4);
+  }
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
