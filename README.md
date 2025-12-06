@@ -2,7 +2,7 @@
 
 A multi-tenant analytics platform for Shopify stores. Connect multiple stores, sync data automatically, and view comprehensive analytics dashboards.
 
-![Dashboard Preview](https://via.placeholder.com/800x400?text=Dashboard+Preview)
+![Dashboard Preview](Screenshots/dashboard.png)
 
 ## 🚀 Features
 
@@ -15,7 +15,7 @@ A multi-tenant analytics platform for Shopify stores. Connect multiple stores, s
 
 ## 🛠️ Tech Stack
 
-### Frontend (Lovable-hosted)
+### Frontend (Vercel-Hosted)
 - React 18 + TypeScript
 - React Router for navigation
 - Tailwind CSS for styling
@@ -33,7 +33,7 @@ A multi-tenant analytics platform for Shopify stores. Connect multiple stores, s
 ## 📁 Project Structure
 
 ```
-├── src/                      # Frontend React app (runs in Lovable)
+├── src/                      # Frontend React app (runs in Vercel)
 │   ├── components/           # Reusable UI components
 │   ├── hooks/                # Custom React hooks
 │   ├── lib/                  # Utilities and API client
@@ -52,9 +52,9 @@ A multi-tenant analytics platform for Shopify stores. Connect multiple stores, s
 
 ## 🏃‍♂️ Getting Started
 
-### Frontend (This Lovable Project)
+### Frontend
 
-The frontend is already running in Lovable! Just log in with any email and password (demo mode).
+Frontend is running in Vercel.
 
 To connect to a real backend:
 1. Set `DEMO_MODE = false` in `src/hooks/useAuth.tsx` and `src/hooks/useTenant.tsx`
@@ -122,7 +122,7 @@ JWT_SECRET="your-secret-key-min-32-chars"
 PORT=3001
 ```
 
-### Frontend (Lovable)
+### Frontend (.env)
 ```env
 VITE_API_URL=http://localhost:3001/api
 ```
@@ -130,7 +130,9 @@ VITE_API_URL=http://localhost:3001/api
 ## 🚀 Deployment
 
 ### Frontend
-Already hosted on Lovable. Click "Publish" to deploy to production.
+Deploy to any react.js hosting:
+- **Netlify**: Connect GitHub repo, auto-deploy
+- **Vercel**: Connect GitHub repo, auto-deploy
 
 ### Backend
 Deploy to any Node.js hosting:
@@ -155,6 +157,3 @@ Deploy to any Node.js hosting:
 
 MIT License - see LICENSE file for details.
 
----
-
-Built with ❤️ using [Lovable](https://lovable.dev)
