@@ -23,6 +23,10 @@ const createTransporter = async () => {
                 user: process.env.SMTP_USER,
                 pass: process.env.SMTP_PASS,
             },
+            // Fail fast if connection hangs
+            connectionTimeout: 10000,
+            greetingTimeout: 5000,
+            socketTimeout: 10000,
         });
     }
 

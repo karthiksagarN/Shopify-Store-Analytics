@@ -51,12 +51,11 @@ router.post('/register', async (req, res, next) => {
     });
 
     // Send verification email
-    try {
-      await sendVerificationEmail(email, verificationToken);
-    } catch (emailError) {
+    // Send verification email (Fire and forget to prevent blocking)
+    // We don't await this so the user gets an immediate response.
+    sendVerificationEmail(email, verificationToken).catch((emailError) => {
       console.error('Failed to send verification email:', emailError);
-      // NOTE: In production, consider rolling back user creation or having a retry mechanism
-    }
+    });
 
     res.status(201).json({
       message: 'User created successfully. Please check your email to verify your account.',
