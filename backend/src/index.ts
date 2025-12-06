@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import bcrypt from 'bcryptjs';
 import dotenv from 'dotenv';
 import cron from 'node-cron';
 import { PrismaClient } from '@prisma/client';
@@ -35,7 +36,7 @@ app.get('/health', (req, res) => {
 
 // Health check for monitoring tool
 app.head('/health_check', (req, res) => {
-  res.json({ status: 'ok'});
+  res.json({ status: 'ok' });
 });
 
 // Error handling middleware
@@ -52,10 +53,36 @@ cron.schedule('*/30 * * * *', async () => {
   }
 });
 
+// Seed demo user
+async function seedDemoUser() {
+  const email = 'demo@shopify.com';
+  const password = 'password123';
+
+  try {
+    const existingUser = await prisma.user.findUnique({ where: { email } });
+    if (!existingUser) {
+      console.log('🌱 Seeding demo user...');
+      const passwordHash = await bcrypt.hash(password, 12);
+      await prisma.user.create({
+        data: {
+          email,
+          passwordHash,
+          isVerified: true,
+        },
+      });
+      console.log('✅ Demo user created: ' + email);
+    }
+  } catch (error) {
+    console.error('Failed to seed demo user:', error);
+  }
+}
+
 // Start server
-app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
-  console.log(`📊 Health check: http://localhost:${PORT}/health`);
+seedDemoUser().then(() => {
+  app.listen(PORT, () => {
+    console.log(`🚀 Server running on http://localhost:${PORT}`);
+    console.log(`📊 Health check: http://localhost:${PORT}/health`);
+  });
 });
 
 // Graceful shutdown
