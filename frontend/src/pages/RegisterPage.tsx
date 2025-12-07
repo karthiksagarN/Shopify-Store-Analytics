@@ -49,7 +49,7 @@ export default function RegisterPage() {
       await register(email, password);
       toast({
         title: 'Account created!',
-        description: 'Please check your email to verify your account.',
+        description: 'You can now log in.',
       });
       navigate('/login');
     } catch (error) {

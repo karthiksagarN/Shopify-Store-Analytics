@@ -5,7 +5,6 @@ import { z } from 'zod';
 import { PrismaClient } from '@prisma/client';
 import { v4 as uuidv4 } from 'uuid';
 import { ApiError } from '../middleware/error.js';
-import { sendVerificationEmail } from '../services/email.js';
 
 const router = Router();
 const prisma = new PrismaClient();
@@ -37,28 +36,18 @@ router.post('/register', async (req, res, next) => {
 
     // Hash password
     const passwordHash = await bcrypt.hash(password, 12);
-    const verificationToken = uuidv4();
-
     // Create user
     const user = await prisma.user.create({
       data: {
         email,
         passwordHash,
-        verificationToken,
-        isVerified: false
+        isVerified: true, // Auto-verify
       },
       select: { id: true, email: true, createdAt: true },
     });
 
-    // Send verification email
-    // Send verification email (Fire and forget to prevent blocking)
-    // We don't await this so the user gets an immediate response.
-    sendVerificationEmail(email, verificationToken).catch((emailError) => {
-      console.error('Failed to send verification email:', emailError);
-    });
-
     res.status(201).json({
-      message: 'User created successfully. Please check your email to verify your account.',
+      message: 'User created successfully. You can now log in.',
       user,
     });
   } catch (error) {
