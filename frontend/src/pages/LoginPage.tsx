@@ -113,17 +113,6 @@ export default function LoginPage() {
             </p>
           </div>
 
-          <div className="mt-6 pt-6 border-t border-border">
-            <div className="bg-secondary/50 p-4 rounded-lg text-sm space-y-2 border border-border">
-              <p className="font-medium text-foreground text-center mb-2">Demo Access</p>
-              <div className="grid grid-cols-[80px_1fr] gap-2">
-                <span className="text-muted-foreground">Email:</span>
-                <span className="font-mono text-foreground select-all">demo@shopify.com</span>
-                <span className="text-muted-foreground">Password:</span>
-                <span className="font-mono text-foreground select-all">password123</span>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
     </div>
